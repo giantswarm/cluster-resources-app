@@ -1,9 +1,9 @@
-[![CircleCI](https://circleci.com/gh/giantswarm/{APP-NAME}-app.svg?style=shield)](https://circleci.com/gh/giantswarm/{APP-NAME}-app)
+[![CircleCI](https://circleci.com/gh/giantswarm/cluster-resources-app.svg?style=shield)](https://circleci.com/gh/giantswarm/cluster-resources-app)
 
-# {APP-NAME} chart
+# cluster-resources chart
 
-Giant Swarm offers a {APP-NAME} App which can be installed in workload clusters.
-Here we define the {APP-NAME} chart with its templates and default configuration.
+Giant Swarm offers a cluster-resources App which can be installed in workload clusters.
+Here we define the cluster-resources chart with its templates and default configuration.
 
 **What is this app?**
 
