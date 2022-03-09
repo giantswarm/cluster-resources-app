@@ -37,3 +37,7 @@ Selector labels
 app.kubernetes.io/name: {{ include "name" . | quote }}
 app.kubernetes.io/instance: {{ .Release.Name | quote }}
 {{- end -}}
+
+{{- define "resource.prometheus-get-metrics.name" -}}
+prometheus-get-metrics
+{{- end -}}

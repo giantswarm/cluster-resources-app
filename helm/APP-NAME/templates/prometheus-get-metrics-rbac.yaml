@@ -1,7 +1,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: prometheus-get-metrics
+  name: {{ include "resource.prometheus-get-metrics.name" . }}
   labels:
     {{- include "labels.common" . | nindent 4 }}
 rules:
@@ -13,7 +13,7 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: prometheus-get-metrics
+  name: {{ include "resource.prometheus-get-metrics.name" . }}
   labels:
     {{- include "labels.common" . | nindent 4 }}
 subjects:
