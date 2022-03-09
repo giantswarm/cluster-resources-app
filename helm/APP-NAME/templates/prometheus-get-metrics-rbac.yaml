@@ -13,13 +13,11 @@ kind: ClusterRoleBinding
 metadata:
   name: prometheus-get-metrics
 subjects:
-  # prometheus is accessing the /metrics endpoint using the credentials from
-  # the kubeconfig secret in the Management Cluster. The user there is
-  # `kubernetes` but that may change in the future. The information in this
-  # endpoint should not be sensitive to authenticated users so binding this to
-  # 'system:authenticated' should be ok.
-  - kind: Group
-    name: system:authenticated
+  # prometheus is accessing kube-controller-manager and kube-scheduler /metrics
+  # endpoint using apiserver proxy which in turn makes anonymous requests to
+  # pods.
+  - kind: User
+    name: system:anonymous
     apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: ClusterRole
