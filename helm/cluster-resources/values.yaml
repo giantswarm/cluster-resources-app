@@ -1,7 +1,6 @@
 # TEMPLATE-APP: This is set as a reasonable default, feel free to change.
 
 name: cluster-resources
-namespace: kube-system
 serviceType: managed
 
 project:
@@ -13,3 +12,5 @@ image:
   name: giantswarm/cluster-resources
   tag: v0.0.1
   pullPolicy: IfNotPresent
+
+cni: "cilium"
