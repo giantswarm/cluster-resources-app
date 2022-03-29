@@ -14,3 +14,7 @@ image:
   pullPolicy: IfNotPresent
 
 cni: cilium
+
+cilium:
+  allowAllIngressFromHostIn:
+    - kube-system

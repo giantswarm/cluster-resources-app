@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Add `allow-all-egress` CiliumClusterwideNetworkPolicy for `cni: cilium`.
+- Add `allow-all-ingress-from-host` CiliumNetworkPolicy (in `kube-system` namespace by default).
 - Add `coredns` NetworkPolicy.
 
 [Unreleased]: https://github.com/giantswarm/REPOSITORY_NAME/tree/master
