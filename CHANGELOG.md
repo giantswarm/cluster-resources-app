@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Add `allow-all-egress` policy for `cni: cilium`.
+- Add `allow-all-egress` CiliumClusterwideNEtworkPolicy for `cni: cilium`.
+- Add `coredns` NetworkPolicy.
 
 [Unreleased]: https://github.com/giantswarm/REPOSITORY_NAME/tree/master
