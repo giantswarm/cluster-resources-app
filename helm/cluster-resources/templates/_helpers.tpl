@@ -38,3 +38,22 @@ Selector labels
 app.kubernetes.io/name: {{ include "name" . | quote }}
 app.kubernetes.io/instance: {{ .Release.Name | quote }}
 {{- end -}}
+
+{{- define "waitForCiliumCRDs.name" -}}
+{{- printf "%s-%s" ( include "name" . ) "wait-for-cilium-crds" | replace "+" "_" | trimSuffix "-" -}}
+{{- end -}}
+
+{{- define "waitForCiliumCRDs.annotations" -}}
+"helm.sh/hook": "pre-install,pre-upgrade"
+"helm.sh/hook-delete-policy": "before-hook-creation,hook-succeeded,hook-failed"
+{{- end -}}
+
+{{- define "waitForCiliumCRDs.selectorLabels" -}}
+app.kubernetes.io/name: "{{ template "waitForCiliumCRDs.name" . }}"
+app.kubernetes.io/instance: "{{ template "waitForCiliumCRDs.name" . }}"
+{{- end -}}
+
+{{/* Create a label which can be used to select any orphaned waitForCiliumCRDsl hook resources */}}
+{{- define "waitForCiliumCRDs.selector" -}}
+{{- printf "%s" "wait-for-cilium-crds-hook" -}}
+{{- end -}}

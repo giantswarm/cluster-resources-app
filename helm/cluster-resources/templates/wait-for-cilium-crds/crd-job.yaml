@@ -1,0 +1,38 @@
+{{- if eq .Values.cni "cilium" }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "waitForCiliumCRDs.name" . }}
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    "helm.sh/hook-weight": "-1"
+    {{- include "waitForCiliumCRDs.annotations" . | nindent 4 }}
+  labels:
+    app.kubernetes.io/component: {{ include "waitForCiliumCRDs.name" . | quote }}
+    {{- include "waitForCiliumCRDs.selectorLabels" . | nindent 4 }}
+    role: {{ include "waitForCiliumCRDs.selector" . | quote }}
+spec:
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: {{ include "waitForCiliumCRDs.name" . | quote }}
+        {{- include "waitForCiliumCRDs.selectorLabels" . | nindent 8 }}
+    spec:
+      serviceAccountName: {{ include "waitForCiliumCRDs.name" . }}
+      securityContext:
+        runAsUser: 65534
+        runAsGroup: 65534
+      tolerations:
+      - key: node-role.kubernetes.io/control-plane
+        effect: NoSchedule
+      containers:
+      - name: kubectl
+        image: "{{ .Values.image.registry }}/giantswarm/docker-kubectl:1.23.5"
+        command:
+        - sh
+        - -c
+        - |
+          {{ .Files.Get "files/wait.sh" | nindent 10 }}
+      restartPolicy: Never
+  backoffLimit: 4
+{{- end }}
