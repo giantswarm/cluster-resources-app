@@ -20,6 +20,7 @@ spec:
     spec:
       serviceAccountName: {{ include "waitForCiliumCRDs.name" . }}
       securityContext:
+        readOnlyRootFilesystem: true
         runAsUser: 65534
         runAsGroup: 65534
       tolerations:
@@ -33,6 +34,12 @@ spec:
         - -c
         - |
           {{ .Files.Get "files/wait.sh" | nindent 10 }}
+        requests:
+          cpu: 50m
+          memory: 100Mi
+        limits:
+          cpu: 50m
+          memory: 100Mi
       restartPolicy: Never
   backoffLimit: 4
 {{- end }}
