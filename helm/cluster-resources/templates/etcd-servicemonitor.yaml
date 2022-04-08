@@ -1,0 +1,10 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: etcd
+spec:
+  selector:
+    matchLabels:
+      component: etcd
+  podMetricsEndpoints:
+  - targetPort: 2381
