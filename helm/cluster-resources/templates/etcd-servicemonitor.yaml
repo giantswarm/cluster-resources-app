@@ -7,4 +7,10 @@ spec:
     matchLabels:
       component: etcd
   podMetricsEndpoints:
-  - targetPort: 2381
+  - port: ""
+    relabelings:
+    - sourceLabels: [__address__]
+      regex: ([^:]+)
+      targetLabel: __address__
+      replacement: ${1}:2381
+      action: replace
