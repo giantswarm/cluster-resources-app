@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: dev-null
+  namespace: kube-system
+  labels:
+    {{- include "labels.common" . | nindent 4 }}
+spec:
+  egress:
+  - {}
+  ingress:
+  - ports:
+    - port: 1053
+      protocol: UDP
+    - port: 1053
+      protocol: TCP
+    - port: 53
+      protocol: UDP
+    - port: 53
+      protocol: TCP
+    - port: 9153
+      protocol: TCP
+  podSelector:
+    matchLabels:
+      k8s-app: dev-null
+  policyTypes:
+  - Egress
+  - Ingress
