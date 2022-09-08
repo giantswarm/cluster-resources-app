@@ -5,6 +5,8 @@ kind: CiliumNetworkPolicy
 metadata:
   name: allow-all-ingress-from-host
   namespace: {{ $namespace }}
+  labels:
+    {{- include "labels.common" . | nindent 4 }}  
 spec:
   endpointSelector: {}
   ingress:
