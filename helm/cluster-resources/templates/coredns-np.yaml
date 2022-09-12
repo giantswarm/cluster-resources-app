@@ -1,7 +1,8 @@
+# TODO start: delete after coredns-addoption was done
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: coredns
+  name: kube-dns
   namespace: kube-system
   labels:
     {{- include "labels.common" . | nindent 4 }}
@@ -21,8 +22,13 @@ spec:
     - port: 9153
       protocol: TCP
   podSelector:
-    matchLabels:
-      k8s-app: kube-dns
+    matchExpressions:
+    - key: k8s-app
+      operator: In
+      values: 
+      - kube-dns
+      - coredns
   policyTypes:
   - Egress
   - Ingress
+# TODO end
