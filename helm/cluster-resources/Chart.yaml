@@ -5,5 +5,5 @@ home: https://github.com/giantswarm/cluster-resources-app
 annotations:
   application.giantswarm.io/team: "rocket"
 sources:
-- https://github.com/some-org/some-repo
-version: 0.1.0
+  - https://github.com/some-org/some-repo
+version: 0.1.1
