@@ -1,6 +1,7 @@
 apiVersion: v2
 name: cluster-resources
 description: Resources installed in a freshly created cluster.
+icon: https://s.giantswarm.io/app-icons/giantswarm/1/dark.svg
 home: https://github.com/giantswarm/cluster-resources-app
 annotations:
   application.giantswarm.io/team: "rocket"
